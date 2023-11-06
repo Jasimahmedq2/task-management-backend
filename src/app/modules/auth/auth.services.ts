@@ -31,17 +31,16 @@ const createUser = async (payload: IUser) => {
     email: payload.email,
   });
 
-  if (isExistUser) {
+  if (isExistUser && !isExistUser?.isVerified) {
     const mailOptions = {
       from: config.my_email,
       to: payload.email,
       subject: "verify your email",
       html: `
     <P>Hello ${payload.name}, please verify your email</p>
-    <a href="https://stupendous-syrniki-758b36.netlify.app/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
+    <a href=" https://task-management-frontend-indol.vercel.app/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
     };
     const result = await transporter.sendMail(mailOptions);
-
     return result;
   } else {
     await User.create(payload);
@@ -52,7 +51,7 @@ const createUser = async (payload: IUser) => {
       subject: "verify your email",
       html: `
     <P>Hello ${payload.name}, please verify your email</p>
-    <a href="https://stupendous-syrniki-758b36.netlify.app/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
+    <a href=" https://task-management-frontend-indol.vercel.app/verify/${createSecret}/" target="_blank">Click here to verify your email</a>`,
     };
     const result = await transporter.sendMail(mailOptions);
     console.log({ createSecret });

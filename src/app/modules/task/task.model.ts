@@ -6,7 +6,7 @@ const TaskSchema = new Schema<ITask>(
     title: { type: String, required: true },
     description: { type: String, required: false },
     dueDate: { type: Date, required: true },
-    completed: {
+    status: {
       type: String,
       enum: ["pending", "progress", "completed"],
       default: "pending",

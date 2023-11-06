@@ -5,7 +5,7 @@ import { AuthValidationSchema } from "./auth.validation";
 const router = express.Router();
 
 router.post(
-  "/registration",
+  "/register",
   ValidateRequest(AuthValidationSchema.CreateUser),
   AuthUserControllers.createUser
 );
